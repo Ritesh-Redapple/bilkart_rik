@@ -1,8 +1,100 @@
-jgijbiugibliugiubojhasdasd
-sad
-asfd
-asf
-sdf
-sdf
-sd
-fsddfsgdfg
+2)  urbane/app/Controller/ApicompanybookingController.php
+    (i)  sendBookingCompleteEmail() {}
+         $pushMsg = "Your service " . $data['service_name'] . " is marked completed by " . $data['company_name'];
+    
+    (ii) sendBookingCancelEmail() {}	
+         $pushMsg = $formatted_date . " " . $data['service_name'] . "  appointment is canceled by " . $data['company_name'];
+		 
+_____________
+*   (i)  Booking marked complete
+         $pushMsg = "Din order ['service_name'] är markerad som klar av ['company_name']";
+    
+    (ii) Booking marked canceled
+         $pushMsg = "['formatted_date'] ['service_name']  Bokning är avbokad av ['company_name']";
+_____________		 
+
+//////////Done
+
+3)  urbane/app/Controller/ApicompanyconsumerchatController.php		
+    (i)  sendChatMsg() {}   line 440
+         $pushMsg = "New message from $companyName - " . $msgText;
+    
+    (ii) sendChatMsg() {}   line 457	
+         $pushMsg = "New message from $companyName - " . $msgText;
+_______________
+*  send chat
+         $pushMsg = ”Nytt meddelande från $companyName - ['msgText']";
+    
+
+_____________		 
+
+////////// Done
+
+4)  urbane/app/Controller/ApicompanydiscountController.php
+    (i)  sendPushNotificationToUsers() {}
+         $pushMsg="$discount% discount is by - ".$rw['companies']['company_name'];
+_____________
+*  Company discount
+         $pushMsg="['discount'] Erbjudande från - ['company_name']";
+_____________
+
+////////Done
+
+
+5)  urbane/app/Controller/ApicompanymanualbookingController.php
+    (i)  sendTransactionalMail() {}
+         $pushMsg=$formatted_date." ".$serviceData['service_name']."  appointment is fixed by ".$serviceData['company_name'];
+    
+_____________
+*  manual booking
+         $pushMsg="['formatted_date'] ['service_name']   En bokning har lagts till av ['company_name']";
+_____________
+
+///////////Done
+
+6)  urbane/app/Controller/ApiconsumerbookingController.php
+    (i)  sendBookingCancelEmail() {}
+         $pushMsg = $formatted_date . " " . $data['service_name'] . "  appointment is canceled by " . $data['user_fullname'];
+    (ii) sendBookingEmail() {}
+         $pushMsg = "New appointment booked for service " . $data['service_name'] . " by " . $data['user_fullname'] . " on " . $formatted_date;
+    (iii)sendNotificationToFriends() {}
+         $pushMsg = "Your Friend  " . $data['user_fullname'] . " recommended you for " . $data['company_name'] . " - " . $data['service_name'] . "";
+_____________
+*   (i)  Consumer cancels booking
+         $pushMsg = "['formatted_date'] ['service_name']  Bokningen har avbokats av [’user_fullname']";
+
+    (ii) New Appointent booking
+         $pushMsg = ”Ny bokning för ['service_name'] av ['user_fullname'] på ['formatted_date']";
+
+    (iii) Friends recommendation
+         $pushMsg = ”Din vän  ['user_fullname'] rekommenderade ['company_name'] - ['service_name'] ";
+_____________		 
+////////// Done
+
+7) urbane/app/Controller/ApiconsumercompanychatController.php
+   (i)  sendChatMsg() {}
+        $pushMsg="New message - ".$msgText;
+        line 285   $pushMsg=$res[0]; 
+		
+_____________
+*  send chat
+         $pushMsg = ”Nytt meddelande från $companyName - ['msgText']";
+ _____________		
+ ////////Done
+
+8) urbane/app/Controller/Component/CommonApiConsumerComponent.php
+   (i)  doLike()
+        getAppointmentLikeNotificationDataForUser() {}
+        $pushMsg = "Friend liked your appointment " . "for ".$resultData['service_name']." from ".$resultData['name'];
+        line 194   $pushMsg = array(
+                    "title" =>"Friend liked your appointment",
+                    "msg" =>"for ".$resultData['service_name']." at ".$resultData['name'],
+                    );
+					
+_____________
+* Friend likes appointment
+        $pushMsg = "Du har fått en gilla-markerking för din bokning av ['service_name'] av ['name']";
+_____________
+
+///////////Done					
+    
